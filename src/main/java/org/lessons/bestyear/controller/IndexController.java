@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class IndexController {
+	
+	List<Movie> movieList= getBestMovies();
+	
+	List<Song> songList= getBestSongs();
 
 	@GetMapping("/")
 	public String bestYear(Model model) {
@@ -27,7 +31,7 @@ public class IndexController {
 	
 	@GetMapping("/movies")
 	public String bestMovies(Model model) {
-		List<Movie> movieList= getBestMovies();
+		movieList.clear();
 		Movie movie1 = new Movie();
 		movie1.setId(1L);
 		movie1.setTitle("L'alba dei viventi morti");
@@ -53,8 +57,8 @@ public class IndexController {
 	
 	@GetMapping("/songs")
 	public String bestSongs(Model model) {
+		songList.clear();
 		
-		List<Song> songList= getBestSongs();
 		Song song1 = new Song();
 		song1.setId(1L);
 		song1.setTitle("La macarena");
@@ -66,7 +70,7 @@ public class IndexController {
 		song2.setSinger("Topolino");
 		
 		Song song3 = new Song();
-		song3.setId(2L);
+		song3.setId(3L);
 		song3.setTitle("Maracaibo");
 		song3.setSinger("Pluto");
 		
@@ -80,19 +84,37 @@ public class IndexController {
 	}
 	
 	@GetMapping("/movies/{id}")
-	public String ricercaId(@PathVariable("id") Long id, Model model) {
-		Movie m = 
-		for(Movie m : getBestMovies()) {
+	public String ricercaMovieId(@PathVariable("id") Long id, Model model) {
+		Movie movie = getMovieById(id);
+		model.addAttribute("movie",movie );
+		model.addAttribute("notFound", true);
+		return "ricercaMovieId";
+	}
+	
+	public Movie getMovieById(long id) {
+		for(Movie m : movieList) {
 			if(m.getId().equals(id)) {
 				return m;
-			} else {
-				return null;
-			}
+			} 
 		}
-		Movie movieRicercata = m;
-		model.addAttribute("movie", m);
-		
-		return "ricercaMovieId";
+			return null;
+	}
+			
+	@GetMapping("/songs/{id}")
+	public String ricercaSongId(@PathVariable("id") Long id, Model model) {
+		Song song = songGetById(id);
+		model.addAttribute("song",song );
+		model.addAttribute("notFound", true);
+		return "ricercaSongId";
+	}
+	
+	public Song songGetById(long id) {
+		for(Song s : songList) {
+			if(s.getId().equals(id)) {
+				return s;
+			} 
+		}
+			return null;
 	}
 	
 	private List<Movie> getBestMovies() {

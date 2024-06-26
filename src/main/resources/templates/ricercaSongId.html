@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Movie for ID...</title>
+		<title>Song for ID...</title>
 	</head>
 	<body style="background-color: lightcyan; display: flex; justify-content: center;">
 		<div style="margin: 100px; padding: 10px; border-color: cornflowerblue; border-style: dotted;">
 				<div th:if="${notFound}" >
-					<h1>The Best Movie by ID is .....</h1>
-					<span th:text="${movie.id}"></span>
-					<span th:text="${movie.title}"></span>
+					<h1>The Best Song by ID is .....</h1>
+					<span th:text="${song.id}"></span>
+					<span th:text="${song.title}"></span>
 				</div>
 		</div>
 	</body>
