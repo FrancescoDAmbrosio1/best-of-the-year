@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Best Movies...</title>
+	</head>
+	<body style="background-color: lightcyan; display: flex; justify-content: center;">
+		<div style="margin: 100px; padding: 10px; border-color: cornflowerblue; border-style: dotted;">
+			<h1 th:text="'Best Movies! '"/>
+			<ul>
+				<li th:each="movie : ${bestMoviesList}" th:text="${movie.id} + ', '+
+				${movie.title} + ', '+${movie.category}"></li>
+			</ul>
+		</div>
+	</body>
+</html>

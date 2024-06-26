@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Best Songs...</title>
+	</head>
+	<body style="background-color: lightcyan; display: flex; justify-content: center;">
+		<div style="margin: 100px; padding: 10px; border-color: cornflowerblue; border-style: dotted;">
+			<h1 th:text="'Best Songs!'"/>
+			<ul>
+				<li th:each="song : ${bestSongsList}" th:text="${song.id} + ', '+
+					${song.title} + ', '+${song.singer}"></li>
+			</ul>
+		</div>
+	</body>
+</html>
