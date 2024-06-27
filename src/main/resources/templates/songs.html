@@ -12,10 +12,12 @@
 	<body style="padding: 30px;display: flex; justify-content: center;">
 		<div class="card" style="width: auto; padding: 30px; align-content: center;">
 			<h1 th:text="'Best Songs! '"/>
-				<ul>
-					<li th:each="song : ${bestSongsList}" th:text="${song.id} + ' - '+
-							${song.title} + ' - '+${song.singer}"></li>
-				</ul>
+			<ul>
+				<li th:each="song : ${bestSongsList}" >
+					<a th:href="'/songs/'+${song.id}" th:text="${song.id} + ' - '+
+								${song.title} + ' - '+${song.singer}"></a>		
+				</li>
+			</ul>
 			<div class="row p-3">
 				<div class="col text-center">
 					<span th:insert="fragments :: button('/', 'Home')"></span>
